@@ -1,30 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layout.html" %}
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Music4U </title>
-    <link rel="stylesheet" href="../static/style.css">
-</head>
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="welcome-banner">
+      <h1>WELCOME TO MUSIC4U</h1>
+    </div>
 
-<body>
-    <header>
-        <h1>Welcome to Music4U 🎵</h1>
-        <p>Your personalized gateway to the world of music.</p>
-        <p><a href="/auth">Go to Sign In / Sign Up</a></p>
-    </header>
+    <section class="recommendations">
+      <h2>FOR YOU</h2>
+      <div class="card-row">
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+      </div>
+    </section>
 
-    <main>
-        <section>
-            <h2>Discover Music You'll Love</h2>
-            <p>Explore curated playlists for genres like K-pop, J-pop, EDM, Vocaloid, and more!</p>
-        </section>
-    </main>
+    <section class="recent">
+      <h2>JUMP BACK IN</h2>
+      <div class="card-row">
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+      </div>
+    </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2025 Music4U Project</p>
-    </footer>
-</body>
-
-</html>
+{% endblock %}
