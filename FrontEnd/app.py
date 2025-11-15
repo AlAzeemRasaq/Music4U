@@ -8,20 +8,35 @@ def home():
     return render_template("index.html", title="Music4U", stylesheet="style.css")
 
 
-@app.route("/auth", methods=["GET", "POST"])
-def auth():
+@app.route("/signin", methods=["GET", "POST"])
+def signin():
     message = ""
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        form_type = request.form.get("form_type")
 
         if username and password:
-            message = f"{form_type} successful! Welcome, {username} 🎵"
+            message = f"Sign In successful! Welcome, {username} 🎵"
         else:
             message = "Please fill out all fields."
 
-    return render_template("auth.html", title="Sign In / Sign Up", message=message)
+    return render_template("signin.html", message=message)
+
+
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    message = ""
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        if username and password:
+            message = f"Sign Up successful! Welcome, {username} 🎵"
+        else:
+            message = "Please fill out all fields."
+
+    return render_template("signup.html", message=message)
+
 
 
 if __name__ == "__main__":
