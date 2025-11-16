@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="profile-avatar">👤</div>
+        <h1>My Profile</h1>
+    </div>
+
+    {% if message %}
+    <div class="message-box">
+        <p>{{ message }}</p>
+    </div>
+    {% endif %}
+
+    <div class="profile-wrapper">
+        <div class="profile-box">
+            <h2>Profile Information</h2>
+            
+            <form action="/profile" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        value="{{ user.username }}" 
+                        placeholder="Your username" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        value="{{ user.email }}" 
+                        placeholder="Your email" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="favorite_genre">Favorite Genre</label>
+                    <select id="favorite_genre" name="favorite_genre">
+                        <option value="Rock" {% if user.favorite_genre == 'Rock' %}selected{% endif %}>Rock</option>
+                        <option value="Pop" {% if user.favorite_genre == 'Pop' %}selected{% endif %}>Pop</option>
+                        <option value="Hip-Hop" {% if user.favorite_genre == 'Hip-Hop' %}selected{% endif %}>Hip-Hop</option>
+                        <option value="Jazz" {% if user.favorite_genre == 'Jazz' %}selected{% endif %}>Jazz</option>
+                        <option value="Classical" {% if user.favorite_genre == 'Classical' %}selected{% endif %}>Classical</option>
+                        <option value="Electronic" {% if user.favorite_genre == 'Electronic' %}selected{% endif %}>Electronic</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="join_date">Member Since</label>
+                    <input 
+                        type="text" 
+                        id="join_date" 
+                        name="join_date" 
+                        value="{{ user.join_date }}" 
+                        disabled
+                    >
+                </div>
+
+                <input type="hidden" name="action" value="update">
+                <button type="submit" class="submit-btn">UPDATE PROFILE</button>
+            </form>
+
+            <div class="signout-section">
+                <a href="/signout" class="signout-btn">SIGN OUT</a>
+            </div>
+        </div>
+
+        <div class="profile-stats">
+            <h2>Your Stats</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Playlists</h3>
+                    <p class="stat-number">12</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Liked Songs</h3>
+                    <p class="stat-number">245</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Followers</h3>
+                    <p class="stat-number">87</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Following</h3>
+                    <p class="stat-number">54</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

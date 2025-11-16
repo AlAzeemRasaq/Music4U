@@ -8,7 +8,11 @@
 
     <nav>
         <a href="/">HOME</a>
-        <a href="/signin">LOGIN</a>
-        <a href="/signup">SIGN UP</a>
+        {% if session.get('username') %}
+            <a href="/profile">PROFILE</a>
+        {% else %}
+            <a href="/signin">LOGIN</a>
+            <a href="/signup">SIGN UP</a>
+        {% endif %}
     </nav>
 </header>
