@@ -78,6 +78,20 @@ def profile():
     return render_template("profile.html", message=message, user=user_data)
 
 
+@app.route("/musicplayer")
+def player_current():
+    return render_template(
+        "musicplayer.html",
+        song_title="Current Song",
+        artist_name="Current Artist",
+        album="Sample Album",
+        year="2025",
+        genre="Electronic",
+        lyrics="This song is currently playing.",
+        cover_url="/static/cover.png"
+    )
+
+
 @app.route("/signout")
 def signout():
     session.clear()
