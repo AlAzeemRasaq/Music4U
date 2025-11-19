@@ -261,3 +261,75 @@ footer {
   text-decoration: none;
   margin-left: 5px;
 }
+
+/* === MUSIC PLAYER PAGE === */
+
+.player-page {
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+    margin-bottom: 120px; /* room for footer player */
+}
+
+.player-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.big-cover {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 16px;
+    box-shadow: 0 0 20px #0003;
+}
+
+.player-right {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.track-title {
+    font-size: 32px;
+    margin: 0;
+}
+
+.track-artist {
+    font-size: 18px;
+    opacity: 0.7;
+}
+
+.track-details p {
+    margin: 4px 0;
+    font-size: 16px;
+}
+
+.track-lyrics {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.track-lyrics h2 {
+    margin-bottom: 10px;
+}
+
+.track-lyrics p {
+    white-space: pre-line;
+    line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+    .player-page {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .player-right {
+        width: 100%;
+    }
+}
