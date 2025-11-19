@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<main class="player-page">
+
+    <!-- LEFT: Cover Art -->
+    <div class="player-left">
+        <img src="{{ cover_url }}" class="big-cover" alt="Album Cover">
+    </div>
+
+    <!-- RIGHT: Info + Lyrics -->
+    <div class="player-right">
+
+        <h1 class="track-title">{{ song_title }}</h1>
+        <p class="track-artist">{{ artist_name }}</p>
+
+        <div class="track-details">
+            <p><strong>Album:</strong> {{ album }}</p>
+            <p><strong>Released:</strong> {{ year }}</p>
+            <p><strong>Genre:</strong> {{ genre }}</p>
+        </div>
+
+        <div class="track-lyrics">
+            <h2>Lyrics</h2>
+            <p>{{ lyrics }}</p>
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}
