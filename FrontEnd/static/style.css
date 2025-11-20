@@ -333,3 +333,41 @@ footer {
         width: 100%;
     }
 }
+
+/* FLOATING HEADER */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background: linear-gradient(90deg, #4728f5, #f563b5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+}
+
+/* Add space to prevent content from sliding under header */
+body {
+    padding-top: 80px; 
+}
+
+/* FLOATING FOOTER (MUSIC BAR) */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+}
+
+/* Add space to bottom of page */
+main {
+    padding-bottom: 100px;
+}
