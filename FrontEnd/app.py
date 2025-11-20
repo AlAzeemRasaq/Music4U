@@ -92,6 +92,40 @@ def player_current():
     )
 
 
+# Temporary playlist storage
+playlists = []
+
+
+@app.route("/playlists")
+def playlist_list():
+    return render_template("playlists.html", playlists=playlists, title="Playlists")
+
+
+@app.route("/playlists/create", methods=["GET", "POST"])
+def playlist_create():
+    if request.method == "POST":
+        name = request.form.get("name")
+        description = request.form.get("description")
+
+        if name:
+            playlist_id = len(playlists)
+            playlists.append({
+                "id": playlist_id,
+                "name": name,
+                "description": description,
+                "songs": []
+            })
+            return redirect(url_for("playlist_list"))
+        
+    return render_template("playlist_create.html", title="Create Playlist")
+
+
+@app.route("/playlists/<int:playlist_id>")
+def playlist_view(playlist_id):
+    playlist = playlists[playlist_id]
+    return render_template("playlist_view.html", playlist=playlist)
+
+
 @app.route("/signout")
 def signout():
     session.clear()
