@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Your Playlists</h1>
+
+<a class="gradient-btn" href="/playlists/create">+ Create Playlist</a>
+
+<div class="playlist-list">
+    {% for p in playlists %}
+        <a class="playlist-card" href="/playlists/{{ p.id }}">
+            <h3>{{ p.name }}</h3>
+            <p>{{ p.description }}</p>
+            <span>{{ p.songs|length }} songs</span>
+        </a>
+    {% endfor %}
+</div>
+
+{% endblock %}
