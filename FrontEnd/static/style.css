@@ -407,3 +407,78 @@ main {
     margin-bottom: 20px;
 }
 
+/* Base header styling stays the same — only adding responsive rules */
+
+/* HAMBURGER BUTTON */
+.hamburger {
+    display: none;
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* MOBILE MENU (hidden by default) */
+#main-menu {
+    display: flex;
+    gap: 20px;
+}
+
+#main-menu.open {
+    display: block;
+}
+
+/* ======= RESPONSIVE RULES ======= */
+@media (max-width: 837px) {
+
+    /* Hide logo */
+    .main-header .logo {
+        display: none;
+    }
+
+    /* Shrink search bar */
+    .search-bar {
+        width: 800px;
+        padding: 2px;
+    }
+
+    /* Show hamburger */
+    .hamburger {
+        display: block;
+        margin-left: 10px;
+    }
+
+    /* Hide nav links by default */
+    nav#main-menu {
+        display: none;
+        flex-direction: column;
+        background: #222;
+        padding: 10px;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        border-radius: 10px;
+        width: 150px;
+        z-index: 999;
+    }
+
+    /* Make dropdown look clean */
+    nav#main-menu a {
+        padding: 10px 0;
+        text-align: right;
+        display: block;
+        border-bottom: 1px solid #333;
+    }
+
+    nav#main-menu a:last-child {
+        border-bottom: none;
+    }
+
+    /* When menu is open, show it */
+    nav#main-menu.open {
+        display: flex;
+    }
+}
+
+
