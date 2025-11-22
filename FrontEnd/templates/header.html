@@ -6,6 +6,9 @@
         <button type="submit">🔍</button>
     </form>
 
+    <!-- Hamburger icon (hidden on desktop) -->
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+
     <nav>
         <a href="/">HOME</a>
         {% if session.get('username') %}
@@ -15,4 +18,11 @@
             <a href="/signup">SIGN UP</a>
         {% endif %}
     </nav>
+
 </header>
+
+<script>
+function toggleMenu() {
+    document.getElementById("main-menu").classList.toggle("open");
+}
+</script>
