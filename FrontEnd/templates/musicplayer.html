@@ -1,54 +1,33 @@
 {% extends "layout.html" %}
+
 {% block content %}
 
-<script>
-    window.addEventListener("DOMContentLoaded", () => {
-        loadTrack({
-            audio_url: "{{ audio_url }}",
-            cover_url: "{{ cover_url }}",
-            title: "{{ song_title }}",
-            artist: "{{ artist_name }}"
-        });
-    });
-</script>
+<main class="player-page">
 
-<div class="music-player">
-    <div class="track-header">
-        <img src="{{ track.cover_url }}" class="track-cover">
-        <div class="track-info">
-            <h1>{{ track.title }}</h1>
-            <p>{{ track.artist }}</p>
-            <button class="add-to-playlist-btn">➕ Add to Playlist</button>
+    <!-- LEFT: Cover Art -->
+    <div class="player-left">
+        <img src="{{ cover_url }}" class="big-cover" alt="Album Cover">
+    </div>
+
+    <!-- RIGHT: Info + Lyrics -->
+    <div class="player-right">
+
+        <h1 class="track-title">{{ song_title }}</h1>
+        <p class="track-artist">{{ artist_name }}</p>
+
+        <div class="track-details">
+            <p><strong>Album:</strong> {{ album }}</p>
+            <p><strong>Released:</strong> {{ year }}</p>
+            <p><strong>Genre:</strong> {{ genre }}</p>
         </div>
-    </div>
 
-    <div class="track-lyrics-section">
-        <button class="toggle-lyrics">Show Full Lyrics</button>
-        <div class="track-lyrics collapsed">
-            {{ track.lyrics }}
+        <div class="track-lyrics">
+            <h2>Lyrics</h2>
+            <p>{{ lyrics }}</p>
         </div>
+
     </div>
 
-    <div class="album-info">
-        <p>Album: {{ track.album }}</p>
-        <p>Track Number: {{ track.track_number }}</p>
-        <p>Duration: {{ track.duration }}</p>
-        <p>Composer: {{ track.composer }}</p>
-        <p>Producer: {{ track.producer }}</p>
-    </div>
+</main>
 
-    <div class="recommended">
-        <h2>Recommended</h2>
-        {% for r in related_tracks %}
-        <p>{{ r }}</p>
-        {% endfor %}
-    </div>
-
-    <div class="up-next">
-        <h2>Up Next</h2>
-        {% for s in queue %}
-        <p>{{ s.title }} – {{ s.artist }}</p>
-        {% endfor %}
-    </div>
-</div>
 {% endblock %}
