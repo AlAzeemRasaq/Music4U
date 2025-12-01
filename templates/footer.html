@@ -1,0 +1,38 @@
+<footer class="music-footer">
+
+    <!-- LEFT -->
+    <div class="now-playing">
+        <a href="/musicplayer" class="cover-link">
+            <div class="song-cover" id="footer-cover"></div>
+        </a>
+
+        <div class="song-info">
+            <p class="song-name" id="footer-title">SONG NAME</p>
+            <p class="artist-name" id="footer-artist">ARTIST NAME</p>
+        </div>
+    </div>
+
+    <!-- CENTER -->
+    <div class="player-center">
+        <div class="controls-top">
+            <button class="control-btn shuffle" id="btn-shuffle">🔀</button>
+            <button class="control-btn prev" id="btn-prev">⏮</button>
+            <button class="control-btn play" id="btn-play">⏯</button>
+            <button class="control-btn next" id="btn-next">⏭</button>
+            <button class="control-btn repeat" id="btn-repeat">🔁</button>
+        </div>
+
+        <div class="progress-container">
+            <span class="current-time" id="current-time">0:00</span>
+            <input type="range" class="progress-bar" id="progress-bar" min="0" max="100" value="0">
+            <span class="total-time" id="total-time">0:00</span>
+        </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right-controls">
+        <span class="volume-icon">🔊</span>
+        <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="50">
+    </div>
+
+</footer>
