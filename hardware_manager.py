@@ -4,7 +4,6 @@ from threading import Thread
 import board
 import busio
 from adafruit_pn532.i2c import PN532_I2C
-from adafruit_pn532 import exceptions
 
 last_scanned_uid = None
 
@@ -59,14 +58,9 @@ def nfc_listen_thread():
                 
             time.sleep(1.5)
             
-        except exceptions.NFCCommunicationError as e:
-            print(f"NFC Thread Warning (Transient Error): {e}") 
-            time.sleep(0.5)
-            continue
-            
         except Exception as e:
-            print(f"NFC Thread CRITICAL ERROR: {e}")
-            time.sleep(5)
+            print(f"NFC Thread Error (Unstable I2C): {e}") 
+            time.sleep(1.5)
 
 def get_last_scanned_uid():
     global last_scanned_uid
