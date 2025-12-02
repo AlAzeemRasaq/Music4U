@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- GLOBAL SCRIPTS -->
+    <script src="{{ url_for('static', filename='js/global.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/player.js') }}" defer></script>
 </head>
 
 <body>
@@ -15,8 +19,11 @@
 
     {% include "footer.html" %}
 
+    <!-- NOTIFICATION CONTAINER -->
+    <div id="notification-container"></div>
+
     <!-- GLOBAL AUDIO PLAYER -->
     <audio id="global-audio" preload="metadata"></audio>
-    <script src="/static/js/player.js"></script>
+
 </body>
 </html>
