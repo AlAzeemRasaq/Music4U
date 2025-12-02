@@ -1,3 +1,4 @@
+from pkgutil import get_data
 from flask import session, Flask, render_template
 
 app = Flask(__name__)
@@ -28,3 +29,30 @@ def play(song_id):
         lyrics=song.lyrics,
         audio_url=song.audio_url
     )
+
+    return song
+
+@app.route("/profile", methods=["POST"])
+def update_profile():
+    # pretend we save profile...
+    return render_template("profile.html", 
+                           message="Profile updated!",
+                           user=get_data("user"))
+
+@app.route("/api/history", methods=["POST"])
+def add_history():
+    data = request.get_json()
+
+    if "history" not in session:
+        session["history"] = []
+
+    # Prevent duplicates in a row
+    if session["history"] and session["history"][-1]["title"] == data["title"]:
+        return {"status": "ignored"}
+
+    session["history"].append(data)
+
+    # Limit to last 20 songs
+    session["history"] = session["history"][-20:]
+
+    return {"status": "ok"}
