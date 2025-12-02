@@ -15,30 +15,51 @@ const footerTitle = document.getElementById("footer-title");
 const footerArtist = document.getElementById("footer-artist");
 const footerCover = document.getElementById("footer-cover");
 
+
 // ------------------------------------
 // LOAD A NEW TRACK
-// Called by backend when user clicks a track
 // ------------------------------------
 window.loadTrack = function(track) {
+
     audio.src = track.audio_url;
     audio.play();
 
-    // Update footer
     footerTitle.textContent = track.title;
     footerArtist.textContent = track.artist;
     footerCover.style.backgroundImage = `url('${track.cover_url}')`;
+
+    // NEW → Notify user
+    notify(`Now playing: ${track.title} – ${track.artist}`);
+
+    // --- NEW: Send to playback history ---
+    fetch("/api/history", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            title: track.title,
+            artist: track.artist,
+            cover_url: track.cover_url
+        })
+    });
 };
+
 
 // ------------------------------------
 // PLAY / PAUSE
 // ------------------------------------
 playBtn.addEventListener("click", () => {
-    if (audio.paused) audio.play();
-    else audio.pause();
+    if (audio.paused) {
+        audio.play();
+        notify("Playback resumed");
+    } else {
+        audio.pause();
+        notify("Playback paused");
+    }
 });
 
 audio.addEventListener("play", () => playBtn.textContent = "⏸");
 audio.addEventListener("pause", () => playBtn.textContent = "⏯");
+
 
 // ------------------------------------
 // PROGRESS BAR + TIME UI
@@ -57,17 +78,46 @@ progressBar.addEventListener("input", () => {
     audio.currentTime = progressBar.value;
 });
 
+
 // ------------------------------------
-// VOLUME CONTROL
+// VOLUME CONTROL  + NOTIFICATION
 // ------------------------------------
 volumeSlider.addEventListener("input", () => {
-    audio.volume = volumeSlider.value / 100;
+    const vol = volumeSlider.value;
+    audio.volume = vol / 100;
+
+    notify(`Volume: ${vol}%`);
 });
 
-// Format seconds into M:SS
+
+// ------------------------------------
+// EXTRA BUTTON NOTIFICATIONS
+// ------------------------------------
+document.getElementById("btn-next").onclick = () => notify("Next track");
+document.getElementById("btn-prev").onclick = () => notify("Previous track");
+document.getElementById("btn-shuffle").onclick = () => notify("Shuffle toggled");
+document.getElementById("btn-repeat").onclick = () => notify("Repeat toggled");
+
+
+// ------------------------------------
+// FORMAT TIME
+// ------------------------------------
 function formatTime(sec) {
     sec = Math.floor(sec);
     const m = Math.floor(sec / 60);
     const s = sec % 60;
     return `${m}:${s.toString().padStart(2, '0')}`;
 }
+
+// ------------------------------------
+// LOG HISTORY TO BACKEND
+// ------------------------------------
+fetch("/api/history", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+        title: track.title,
+        artist: track.artist,
+        cover_url: track.cover_url
+    })
+});
