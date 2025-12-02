@@ -9,9 +9,9 @@
     </div>
 
     {% if message %}
-    <div class="message-box">
-        <p>{{ message }}</p>
-    </div>
+    <script>
+        notify("{{ message }}", "success");
+    </script>
     {% endif %}
 
     <div class="profile-wrapper">
