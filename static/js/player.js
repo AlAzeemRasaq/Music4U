@@ -121,3 +121,76 @@ fetch("/api/history", {
         cover_url: track.cover_url
     })
 });
+
+
+// ------------------------------------
+// KEYBOARD SHORTCUTS
+// ------------------------------------
+document.addEventListener("keydown", (e) => {
+    // Avoid triggering shortcuts while typing inside inputs
+    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+
+    switch (e.key.toLowerCase()) {
+
+        case " ":
+            e.preventDefault();
+            playBtn.click();
+            break;
+
+        case "arrowright":
+            audio.currentTime += 5;
+            notify("Skipped +5s");
+            break;
+
+        case "arrowleft":
+            audio.currentTime -= 5;
+            notify("Rewind -5s");
+            break;
+
+        case "arrowup":
+            volumeSlider.value = Math.min(100, Number(volumeSlider.value) + 5);
+            audio.volume = volumeSlider.value / 100;
+            notify(`Volume: ${volumeSlider.value}%`);
+            break;
+
+        case "arrowdown":
+            volumeSlider.value = Math.max(0, Number(volumeSlider.value) - 5);
+            audio.volume = volumeSlider.value / 100;
+            notify(`Volume: ${volumeSlider.value}%`);
+            break;
+
+        case "n":
+            document.getElementById("btn-next").click();
+            break;
+
+        case "p":
+            document.getElementById("btn-prev").click();
+            break;
+    }
+});
+
+// ------------------------------------
+// PLAYBACK SPEED CONTROL
+// ------------------------------------
+const speedBtn = document.getElementById("btn-speed");
+const speeds = [1, 1.25, 1.5, 1.75, 2];
+let speedIndex = 0;
+
+speedBtn.addEventListener("click", () => {
+    speedIndex = (speedIndex + 1) % speeds.length;
+    const newSpeed = speeds[speedIndex];
+
+    audio.playbackRate = newSpeed;
+    speedBtn.textContent = newSpeed + "x";
+
+    notify(`Playback speed: ${newSpeed}x`);
+});
+
+// ------------------------------------
+// COPY SONG LINK TO CLIPBOARD
+// ------------------------------------
+window.copySongLink = function(songId) {
+    const url = `${window.location.origin}/musicplayer/${songId}`;
+    navigator.clipboard.writeText(url);
+    notify("Song link copied!");
+};
