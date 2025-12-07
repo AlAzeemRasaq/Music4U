@@ -178,5 +178,24 @@ def signout():
     return redirect(url_for('home'))
 
 
+@app.route("/api/history", methods=["POST"])
+def add_history():
+    data = request.get_json()
+
+    if "history" not in session:
+        session["history"] = []
+
+    # Prevent duplicates in a row
+    if session["history"] and session["history"][-1]["title"] == data["title"]:
+        return {"status": "ignored"}
+
+    session["history"].append(data)
+
+    # Limit to last 20 songs
+    session["history"] = session["history"][-20:]
+
+    return {"status": "ok"}
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
