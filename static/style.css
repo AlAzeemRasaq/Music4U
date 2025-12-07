@@ -543,3 +543,18 @@ main {
     background: #333;
     object-fit: cover;
 }
+
+/* COPY LINK BUTTON */
+.copy-link-btn {
+    background: linear-gradient(90deg, #7c4dff, #ff8ae2);
+    padding: 8px 16px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    margin-top: 10px;
+}
+
+.copy-link-btn:hover {
+    opacity: 0.9;
+}
