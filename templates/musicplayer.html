@@ -18,6 +18,9 @@
 
         <h1 class="track-title">{{ song_title }}</h1>
         <p class="track-artist">{{ artist_name }}</p>
+        <button class="copy-link-btn" onclick="copySongLink('{{ song_id }}')">
+            Copy Song Link
+        </button>
 
         <div class="track-details">
             <p><strong>Album:</strong> {{ album }}</p>
